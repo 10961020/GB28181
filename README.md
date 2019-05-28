@@ -35,9 +35,9 @@ ffmpeg库可以实现对码流的在线解码转发推流操作  目前本人找
 写了这么多 各位帮忙点个star呗？感谢
 
 参考博文
-ps流 h264解析
-https://blog.csdn.net/caixing_java/article/details/79154819
-https://blog.csdn.net/occupy8/article/details/39288035
-https://blog.csdn.net/machh/article/details/52165292
-ptz控制
-https://blog.csdn.net/zhangrui_fslib_org/article/details/52537781
+ps流 h264解析  
+https://blog.csdn.net/caixing_java/article/details/79154819  
+https://blog.csdn.net/occupy8/article/details/39288035  
+https://blog.csdn.net/machh/article/details/52165292  
+ptz控制  
+https://blog.csdn.net/zhangrui_fslib_org/article/details/52537781  
