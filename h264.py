@@ -24,6 +24,14 @@ time_ = {}
 
 # TODO 跳过字段 一般用不到
 def parse_csrc(pkt, cc, lc):
+    """
+    Parse a csrc.
+
+    Args:
+        pkt: (todo): write your description
+        cc: (str): write your description
+        lc: (todo): write your description
+    """
     for i in range(cc):
         lc += 4
     return lc
@@ -31,6 +39,13 @@ def parse_csrc(pkt, cc, lc):
 
 # TODO 跳过一些字段 一般用不到 为啥这么写我也不知道
 def parse_ext_hdr(pkt, lc):
+    """
+    Parse the pkt.
+
+    Args:
+        pkt: (todo): write your description
+        lc: (todo): write your description
+    """
     bt = bitstring.BitArray(bytes=pkt)
     bc = 8 * lc + 16
     lc = 4 + 4*bt[bc:bc + 16].uint
@@ -39,6 +54,13 @@ def parse_ext_hdr(pkt, lc):
 
 # TODO payload中取H264保存到文件
 def parse_frame(pay, name_id):
+    """
+    Parse a single frame
+
+    Args:
+        pay: (str): write your description
+        name_id: (str): write your description
+    """
     global ji_shu
     global time_
     global rtp_shipin
@@ -76,6 +98,13 @@ def parse_frame(pay, name_id):
 
 # TODO 提取RTP包中payload
 def recv_pkt(data, name_id):
+    """
+    Receive a packet
+
+    Args:
+        data: (array): write your description
+        name_id: (str): write your description
+    """
     global sn
     global rtp_dict
     # global str111
@@ -124,6 +153,16 @@ def recv_pkt(data, name_id):
 
 
 def main(name_id, port, time_now, local_ip1, local_port1):
+    """
+    Main function.
+
+    Args:
+        name_id: (str): write your description
+        port: (int): write your description
+        time_now: (int): write your description
+        local_ip1: (str): write your description
+        local_port1: (int): write your description
+    """
     global sn
     global ji_shu
     global time_
