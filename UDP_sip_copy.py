@@ -40,6 +40,12 @@ sema = ''
 
 # TODO 登入
 def login_sip(s):
+    """
+    Login to sipang.
+
+    Args:
+        s: (todo): write your description
+    """
     global ip_haikang
     global device_dict
     global device_dict_now
@@ -66,6 +72,14 @@ def login_sip(s):
 
 # TODO 保持心跳
 def keep_heart(s, addr_heart, str_receive):
+    """
+    Keeps the heartbeat of s.
+
+    Args:
+        s: (todo): write your description
+        addr_heart: (int): write your description
+        str_receive: (todo): write your description
+    """
     str_send = 'SIP/2.0 200 OK\n'
     str_send += 'To: <sip:{}>;tag=69113a2a\n'.format(ip_haikang)
     str_send += 'Contact: sip:{}\n'.format(ip_haikang)
@@ -85,6 +99,13 @@ def keep_heart(s, addr_heart, str_receive):
 
 # TODO 获取设备信息请求
 def get_messages_receive(s, addr_get):
+    """
+    Gets messages from sls.
+
+    Args:
+        s: (todo): write your description
+        addr_get: (str): write your description
+    """
     list1 = '<?xml version="1.0"?>\n<Query>\n<CmdType>Catalog</CmdType>\n<SN>1{}</SN>\n<DeviceID>{}</DeviceID>\n</Query>\n'.format(str(random.randint(10000, 99999))[1:], ip_haikang[:ip_haikang.find('@')])
     str_send = 'MESSAGE sip:{} SIP/2.0\n'.format(ip_haikang)
     str_send += 'To: <sip:{}>\n'.format(ip_haikang)
@@ -102,6 +123,12 @@ def get_messages_receive(s, addr_get):
 
 # TODO 设备信息数据解析
 def get_messages_send(str_receive):
+    """
+    Get all messages from device.
+
+    Args:
+        str_receive: (todo): write your description
+    """
     name = str_receive[(str_receive.find('<Name>')+6):str_receive.find('<', str_receive.find('<Name>')+6)]
     device_id = str_receive[(str_receive.find('<DeviceID>', str_receive.find('</DeviceID>'))+10):str_receive.find(
         '<', str_receive.find('<DeviceID>', str_receive.find('</DeviceID>'))+10)]
@@ -118,6 +145,14 @@ def get_messages_send(str_receive):
 
 # TODO 发送ACK确认推流
 def get_video_receive2(s, addr_get, str_receive):
+    """
+    Get video part of string s.
+
+    Args:
+        s: (todo): write your description
+        addr_get: (todo): write your description
+        str_receive: (str): write your description
+    """
     global device_dict_shiyong
     global device_dict
     sb_id = str_receive[(str_receive.find('To:') + 9):str_receive.find('@', str_receive.find('To:'))]
@@ -150,6 +185,14 @@ def get_video_receive2(s, addr_get, str_receive):
 
 # TODO 发送ACK确认推流失败
 def get_video_receive3(s, addr_get, str_receive):
+    """
+    Reads a video string.
+
+    Args:
+        s: (todo): write your description
+        addr_get: (str): write your description
+        str_receive: (str): write your description
+    """
     global device_dict
     global device_dict_now
     sb_id = str_receive[(str_receive.find('To: <sip:') + 9):str_receive.find('@', str_receive.find('To: <sip:'))]
@@ -176,6 +219,13 @@ def get_video_receive3(s, addr_get, str_receive):
 
 # TODO 请求设备视频流
 def get_video_receive(s, addr_get):
+    """
+    Get a new video.
+
+    Args:
+        s: (todo): write your description
+        addr_get: (todo): write your description
+    """
     global port
     global device_dict
     global device_dict_now
@@ -260,6 +310,14 @@ def get_video_receive(s, addr_get):
 
 # TODO 请求关闭某个设备视频流
 def get_videoclose_receive(s, addr_get, sb_id):
+    """
+    Get vide vide vide information.
+
+    Args:
+        s: (todo): write your description
+        addr_get: (todo): write your description
+        sb_id: (str): write your description
+    """
     if sb_id in device_dict_shiyong:
         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + '请求关闭{}视频流'.format(sb_id))
         str_send = 'BYE sip:{} SIP/2.0\n'.format(ip_haikang)
@@ -278,6 +336,12 @@ def get_videoclose_receive(s, addr_get, sb_id):
 
 # TODO 监听消息
 def monitor_messages(s):
+    """
+    Monitor the messages from device.
+
+    Args:
+        s: (todo): write your description
+    """
     global device_dict_shiyong
     while True:
         data, addr_messages = s.recvfrom(1500)
@@ -351,6 +415,13 @@ def monitor_messages(s):
 
 # TODO 视频预览模块
 def mutual_interface(s, addr_interface):
+    """
+    Perform an interface on an interface.
+
+    Args:
+        s: (todo): write your description
+        addr_interface: (int): write your description
+    """
     global device_dict
     global time_now
     time.sleep(30)
@@ -373,6 +444,12 @@ def mutual_interface(s, addr_interface):
 
 # TODO 视频处理中心
 def shi_pin_liu(i):
+    """
+    Return a device i as a dict.
+
+    Args:
+        i: (int): write your description
+    """
     if i in device_dict_shiyong:
         main(i, device_dict_shiyong[i][0], time_now, local_ip, local_port)
     return
@@ -402,6 +479,13 @@ def shi_pin_liu(i):
 
 # TODO 更新设备状态一天一次
 def device_info(s, addr_interface):
+    """
+    Display device information about a device.
+
+    Args:
+        s: (int): write your description
+        addr_interface: (int): write your description
+    """
     print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) + '更新设备状态')
     timer = threading.Timer(time.mktime(time.strptime(time.strftime('%Y%m%d', time.localtime(time.time())), "%Y%m%d"))+60*60*24*7-time.time(), device_info, (s, addr_interface))
     timer.start()
@@ -415,6 +499,13 @@ def device_info(s, addr_interface):
 
 # TODO 读本地文件更新设备是否播放
 def sb_dat(s, addr_interface):
+    """
+    Parse s3 device information.
+
+    Args:
+        s: (int): write your description
+        addr_interface: (int): write your description
+    """
     global device_dict
     global time_now
     time_now = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))

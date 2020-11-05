@@ -15,6 +15,16 @@ sb_id = '18062804121310234425'
 
 
 def ptz(i, control=0, height=144, width=144, speed=16):
+    """
+    Generate a random iotile.
+
+    Args:
+        i: (int): write your description
+        control: (str): write your description
+        height: (int): write your description
+        width: (int): write your description
+        speed: (int): write your description
+    """
     list1 = '<?xml version="1.0"?>\n'
     list1 += '<Control>\r\n'
     list1 += '<CmdType>DeviceControl</CmdType>\r\n'
