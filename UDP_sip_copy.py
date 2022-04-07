@@ -382,13 +382,13 @@ def shi_pin_liu(i):
 #     global device_dict
 #     device_dict = {}
 #     db = pymysql.connect(
-#         host='10.160.32.233',
-#         user='proxysql',
-#         password='jado@1301',
-#         database='nc_pr'
+#         host='1.1.1.1',
+#         user='pro',
+#         password='1',
+#         database='n'
 #     )
 #     cur = db.cursor()
-#     sql_select = "SELECT equip_id FROM sb_sbdy_copy1 WHERE road_type = '隧道' OR road_type = '桥梁'"
+#     sql_select = "SELECT"
 #     cur.execute(sql_select)
 #
 #     data = cur.fetchall()
